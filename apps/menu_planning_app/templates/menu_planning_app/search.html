@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% if results %}
+<html>
+{% else %}
+<html id="pre-search">
+{% endif %}
+  <head>
+    <meta charset="utf-8">
+    <title>Menu Planning</title>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"media="screen" title="no title"  charset="utf-8">
+    <script src="{% static 'js/app.js' %}"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <ul>
+        <li><a href="{% url 'menu:index' %}">Home</a></li>
+        <li><a href="{% url 'menu:profile' user %}">Profile</a></li>
+        <li><a href="{% url 'login:logout' %}">Logout</a></li>
+      </ul>
+    </div>
+    <form action="{% url 'menu:to_search' 1 %}" method="post" class="form-wrapper">
+      {% csrf_token %}
+      <input type='text' name='search' class="search">
+      <input type='hidden' name='count' value="1">
+      <span class="arrow">
+        <input type="submit" value="Search Recipes" class="button">
+      </span>
+      <p>Powered By<a href="http://food2fork.com/" target="_blank">Food2Fork.com</a></p>
+    </form>
+    {% for result in results.recipes %}
+      <div class="result">
+        <div class="content">
+          {% if result.recipe_id in recipes %}
+            <img src='../static/images/heart.png' alt="image" class="fave_img" id="fave_img_{{result.recipe_id}}"/>
+            <p class="to_fave" id="{{result.recipe_id}}" hidden="true">Favorite This</p>
+          {% else %}
+            <img src='../static/images/heart.png' alt="image" class="fave_img" id="fave_img_{{result.recipe_id}}" hidden="true"/>
+            <p class="to_fave" id="{{result.recipe_id}}">Favorite This</p>
+          {% endif %}
+          <div class="image">
+            <img src={{result.image_url}} alt="image" class="result_img"/>
+          </div>
+          <h4>{{result.title}}</h4>
+          <a href="{{result.source_url}}" target="_blank">{{result.publisher}}</a>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="page_buttons">
+    {% if previous >= 1 %}
+      <form action="{% url 'menu:to_search' previous %}" method="post">
+        {% csrf_token %}
+        <input type='hidden' name='count' value="{{previous}}">
+        <input type='hidden' name='search' value="{{search}}">
+        <span class="arrow">
+          <input type="submit" value="Previous Page" id="previous_button">
+        </span>
+      </form>
+    {% endif %}
+    </div>
+    <div class="page_buttons">
+    {% if results.count == 30 %}
+      <form action="{% url 'menu:to_search' next %}" method="post">
+        {% csrf_token %}
+        <input type='hidden' name='count' value="{{next}}">
+        <input type='hidden' name='search' value="{{search}}">
+        <span class="arrow">
+          <input type="submit" value="Next Page" id="next_button">
+        </span>
+      </form>
+    {% endif %}
+    </div>
+    <form action="{% url 'menu:favorite' %}" method="post" id="fave_form">
+      {% csrf_token %}
+    </form>
+    <form action="{% url 'menu:unfavorite' %}" method="post" id="unfave_form">
+      {% csrf_token %}
+    </form>
+  </body>
+</html>

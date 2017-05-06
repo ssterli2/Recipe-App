@@ -1,0 +1,30 @@
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+  <div class="navbar">
+    <ul>
+      <li><a href="{% url 'menu:index' %}">Home</a></li>
+    </ul>
+  </div>
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+  <h1 class="login_h">Register</h1>
+  <form class="login" action="{% url 'login:to_register' %}" method="post">
+    {% csrf_token %}
+    {{ regForm.as_p }}
+    <input class="login_button" type="submit" value="Register">
+  </form>
+  <h1 class="login_h">Login</h1>
+  <form class="login" action="{% url 'login:to_login' %}" method="post">
+    {% csrf_token %}
+    {{ logForm.as_p }}
+    <input class="login_button" type="submit" value="Login">
+  </form>
+</body>
+</html>

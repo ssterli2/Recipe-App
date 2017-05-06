@@ -1,0 +1,285 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: 'Slabo 27px', serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+#main {
+  margin: 2%;
+  height: 600px;
+  background-image: url("../images/main.jpg");
+  background-repeat: no-repeat;
+}
+
+#pre-search {
+  width: 100%;
+  background-image: url("../images/cookbook.jpg");
+  background-repeat: no-repeat;
+}
+
+.navbar ul {
+ margin: 0;
+ padding: 5px;
+ height: 35px;
+ list-style-type: none;
+ text-align: center;
+ font-size: 1.25em;
+ font-family: 'Slabo 27px', serif;
+ background-color: #495453;
+ }
+
+.navbar ul li {
+ display: inline;
+ height: 100%;
+ padding-top: 0;
+ padding-bottom: 0;
+ vertical-align: middle;
+ }
+
+.navbar ul li a {
+ text-decoration: none;
+ padding: .2em 1em;
+ color: white;
+ background-color: #495453;
+ }
+
+.navbar ul li a:hover {
+ color: #495453;
+ background-color: #D0F2E7;
+ }
+
+ .form-wrapper {
+ width:100%;
+ height: 40px;
+ margin-top: 3%;
+ margin-bottom: 2%;
+ padding:auto;
+ text-align: center;
+ }
+
+ .search {
+ height: 100%;
+ width: 18%;
+ padding-left: 1%;
+ margin-top: 1%;
+ font-family: 'Slabo 27px', serif;
+ font-size: 1em;
+ color: #495453;
+ background:#D9DBDB;
+ border:0px solid #dbdbdb;
+ border-radius: 5px;
+ }
+
+ .button {
+ height: 100%;
+ position:relative;
+ padding:6px 15px;
+ left:-8px;
+ border:2px solid #ADE0DB;
+ background-color:#ADE0DB;
+ color:#495453;
+ border-radius: 0 5px 5px 0;
+ }
+
+ .button:hover  {
+ background-color:#495453;
+ color:#ADE0DB;
+ }
+
+#index_button {
+  background: #EBF2F2;
+  border: 2px solid #EBF2F2;
+  margin-top: -10%;
+}
+
+#main p {
+  color: #EBF2F2;
+}
+
+.result {
+    float:left;
+    position: relative;
+    width: 30%;
+    padding-bottom : 30%;
+    margin:1.66%;
+    background-color:#EBF2F2;
+    overflow: auto;
+}
+
+.content {
+    position:absolute;
+    height:90%;
+    width:90%;
+    padding: 5%;
+    color: #495453;
+    font-size: 1.25em;
+}
+
+.fave_img {
+  position: absolute;
+  width: 10%;
+  top: 2%;
+  left: 2%;
+  z-index: 1;
+}
+
+.to_fave {
+  position: absolute;
+  height: 8%;
+  padding-left: 2%;
+  padding-top: 2%;
+  padding-right: 2%;
+  color: #AF274E;
+  top: 2%;
+  left: 2%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.6)
+}
+
+.image {
+  height: 75%;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 2%;
+}
+
+.result_img {
+  height: 100%;
+  width: auto;
+  margin: auto;
+  vertical-align: middle;
+}
+
+#main_content {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 50%;
+  height: 30%;
+  margin: auto;
+  margin-top: 10%;
+  text-align: center;
+  padding-top: 5%;
+  font-size: 1.5em;
+}
+
+#website_name {
+  font-style: italic;
+}
+
+.login, .update {
+    margin-left: 5%;
+    padding-left: 1%;
+    border: 3px solid #f1f1f1;
+    width: 30%;
+}
+
+/* Full-width inputs */
+.login input[type=text], .login input[type=password], .update input[type=text], .update input[type=password]{
+    width: 93%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Slabo 27px', serif;
+    font-size: 1em;
+    color: #495453;
+    border-radius: 5px;
+}
+
+/* Set a style for all buttons */
+.login_button, .update_button {
+    background-color: #ADE0DB;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    margin-left: 20%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+}
+
+/* Add a hover effect for buttons */
+.login_button:hover, .update_button:hover {
+    opacity: 0.8;
+}
+
+.login_h, .update_h {
+  padding-left: 2%;
+}
+a {
+    color: #495453;
+}
+
+a:visited {
+    color: #69B4B2;
+}
+
+#profile {
+  font-size: 1em;
+  color: #AF274E;
+  width: 100%;
+  text-align: center;
+  padding: 2% 0 2% 0;
+}
+
+#recipe {
+  background-color: rgba(217, 219, 219, 0.6);
+  width: 50%;
+  margin: auto;
+  margin-top: 3%;
+  padding-bottom: 1%;
+}
+
+.recipe_img {
+  width: 80%;
+  margin-top: 5%;
+}
+
+.recipe_info {
+  width: 80%;
+  margin: 3% 0 4% 30%
+}
+
+.recipe_info h3, .recipe_info div{
+  margin-left: 4%;
+}
+
+.page_buttons {
+  width: 49%;
+  display: inline-block;
+  margin-bottom: 5%;
+  margin-top: 2%;
+}
+
+#previous_button {
+  margin-left: 15%;
+  height: 40px;
+  width: 100px;
+  border:2px solid #ADE0DB;
+  background-color:#ADE0DB;
+  color:#495453;
+  border-radius: 5px;
+}
+
+#next_button {
+ margin-left: 60%;
+ height: 40px;
+ width: 100px;
+ border:2px solid #ADE0DB;
+ background-color:#ADE0DB;
+ color:#495453;
+ border-radius: 5px;
+}
+
+#next_button:hover, #previous_button:hover {
+  background-color:#495453;
+  color:#ADE0DB;
+}

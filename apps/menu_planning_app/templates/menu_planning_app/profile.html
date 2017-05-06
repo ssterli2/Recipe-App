@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"media="screen" title="no title"  charset="utf-8">
+    <script src="{% static 'js/app.js' %}"></script>
+  </head>
+  <body>
+    <div class="navbar">
+      <ul>
+        <li><a href="{% url 'menu:index' %}">Home</a></li>
+        <li><a href="{% url 'menu:search' %}">Search</a></li>
+        <li><a href="{% url 'login:logout' %}">Logout</a></li>
+      </ul>
+    </div>
+    <div  id="profile">
+      <h1>Welcome {{user.first_name}}!</h1>
+      <a href="{% url 'menu:update_profile' user.id %}">Edit Profile</a>
+    </div>
+    <div>
+      {% for recipe in recipes %}
+          {% if user in recipe.users.all %}
+            <div class="result">
+              <div class="content">
+              <img src='../static/images/heart.png' alt="image" class="fave_img" id="fave_img_{{recipe.api_id}}"/>
+              <p class="to_fave" id="{{recipe.api_id}}" hidden="true">Favorite This</p>
+              <div class="image">
+                <a href="{% url 'menu:recipe' recipe.id %}" target="_blank"><img src={{recipe.photo}} alt="image" class="result_img"/></a>
+              </div>
+              <h4>{{recipe.name}}</h4>
+              <a href="{{recipe.recipe_link}}" target="_blank">{{recipe.publisher}}</a>
+              <p class="ingredient_show" id="ingredient_{{recipe.api_id}}">Show Ingredients</p>
+              <div class="ingredients" id="ingredients_all_{{recipe.api_id}}">
+                {% for ingredient in ingredients %}
+                  {% if ingredient in recipe.ingredients.all %}
+                    <p>{{ingredient.ingredient}}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <form action="{% url 'menu:favorite' %}" method="post" id="fave_form">
+      {% csrf_token %}
+    </form>
+    <form action="{% url 'menu:unfavorite' %}" method="post" id="unfave_form">
+      {% csrf_token %}
+    </form>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<head>
+  <meta charset="utf-8">
+  <title>Update Profile</title>
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+  <div class="navbar">
+    <ul>
+      <li><a href="{% url 'menu:index' %}">Home</a></li>
+      <li><a href="{% url 'menu:search' %}">Search</a></li>
+      <li><a href="{% url 'login:logout' %}">Logout</a></li>
+    </ul>
+  </div>
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+  <h1 class="update_h">Update Profile</h1>
+  <form action="{% url 'login:to_update' user.id %}" method='POST' class="update">
+    {% csrf_token %}
+    First Name: <input type='text' name='first_name' value="{{user.first_name}}">
+    Last Name: <input type='text' name='last_name' value="{{user.last_name}}">
+    Username: <input type='text' name='username' value="{{user.username}}">
+    <input type="submit" value="Save" class="update_button">
+  </form>
+  <h1 class="update_h">Change Password</h1>
+  <form action="{% url 'login:update_password' user.id %}" method='POST' class="update">
+    {% csrf_token %}
+    Password: <input type='password' name='password'>
+    Confirm Password: <input type='password' name='confirm'>
+    <input type="submit" value="Update Password" class="update_button">
+  </form>
+</body>
+</html>
