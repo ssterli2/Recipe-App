@@ -8,9 +8,9 @@
 <body>
   <div class="navbar">
     <ul>
-      <li><a href="{% url 'menu:index' %}">Home</a></li>
-      <li><a href="{% url 'menu:search' %}">Search</a></li>
-      <li><a href="{% url 'login:logout' %}">Logout</a></li>
+      <div class="navbar_option"><li><a href="{% url 'menu:index' %}">Home</a></li></div>
+      <div class="navbar_option"><li><a href="{% url 'menu:search' %}">Search</a></li></div>
+      <div class="navbar_option"><li><a href="{% url 'login:logout' %}">Logout</a></li></div>
     </ul>
   </div>
   {% for message in messages %}
@@ -19,16 +19,16 @@
   <h1 class="update_h">Update Profile</h1>
   <form action="{% url 'login:to_update' user.id %}" method='POST' class="update">
     {% csrf_token %}
-    First Name: <input type='text' name='first_name' value="{{user.first_name}}">
-    Last Name: <input type='text' name='last_name' value="{{user.last_name}}">
-    Username: <input type='text' name='username' value="{{user.username}}">
+    First Name: <input type='text' name='first_name' value="{{user.first_name}}"><br>
+    Last Name: <input type='text' name='last_name' value="{{user.last_name}}"><br>
+    Username: <input type='text' name='username' value="{{user.username}}"><br>
     <input type="submit" value="Save" class="update_button">
   </form>
   <h1 class="update_h">Change Password</h1>
   <form action="{% url 'login:update_password' user.id %}" method='POST' class="update">
     {% csrf_token %}
-    Password: <input type='password' name='password'>
-    Confirm Password: <input type='password' name='confirm'>
+    Password: <input type='password' name='password'><br>
+    Confirm Password: <input type='password' name='confirm'><br>
     <input type="submit" value="Update Password" class="update_button">
   </form>
 </body>

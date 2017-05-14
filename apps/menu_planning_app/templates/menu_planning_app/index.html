@@ -11,10 +11,10 @@
   <body>
     <div class="navbar">
       <ul>
-        <li><a href="{% url 'login:signin' %}">Login</a></li>
-        <li><a href="{% url 'menu:profile' user %}">Profile</a></li>
-        <li><a href="{% url 'menu:search' %}">Search</a></li>
-        <li><a href="{% url 'login:logout' %}">Logout</a></li>
+        <div class="navbar_option"><li><a href="{% url 'login:signin' %}">Login</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'menu:profile' user %}">Profile</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'menu:search' %}">Search</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'login:logout' %}">Logout</a></li></div>
       </ul>
     </div>
     <div id="main">
@@ -25,8 +25,8 @@
         <span class="arrow">
           <input type="submit" value="Search Recipes" class="button" id="index_button">
         </span>
-        <p>Powered By<a href="http://food2fork.com/" target="_blank">Food2Fork.com</a></p>
       </form>
+        <p class="powered_by">Powered By<a href="http://food2fork.com/" target="_blank">Food2Fork.com</a></p>
       <div id="main_content">
         <h1>Welcome to <span id="website_name">Your Recipes</span><h1>
         <h3>We make finding recipes easy</h3>

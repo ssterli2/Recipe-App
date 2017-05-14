@@ -12,38 +12,55 @@
   <body>
     <div class="navbar">
       <ul>
-        <li><a href="{% url 'menu:index' %}">Home</a></li>
-        <li><a href="{% url 'menu:search' %}">Search</a></li>
-        <li><a href="{% url 'login:logout' %}">Logout</a></li>
+        <div class="navbar_option"><li><a href="{% url 'menu:index' %}">Home</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'menu:search' %}">Search</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'login:logout' %}">Logout</a></li></div>
       </ul>
     </div>
     <div  id="profile">
       <h1>Welcome {{user.first_name}}!</h1>
       <a href="{% url 'menu:update_profile' user.id %}">Edit Profile</a>
     </div>
+    <div id="filter_sec">
+      <div id="filter_contents">
+        Filter By Category: <select name="filter_category" id="filter">
+            <option value="all" id="all_cat">All</option>
+          {% for category,recipe in recipes %}
+            {% if category != "" %}
+              <option value="{{category}}">{{category}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    </div>
     <div>
-      {% for recipe in recipes %}
-          {% if user in recipe.users.all %}
-            <div class="result">
-              <div class="content">
-              <img src='../static/images/heart.png' alt="image" class="fave_img" id="fave_img_{{recipe.api_id}}"/>
-              <p class="to_fave" id="{{recipe.api_id}}" hidden="true">Favorite This</p>
-              <div class="image">
-                <a href="{% url 'menu:recipe' recipe.id %}" target="_blank"><img src={{recipe.photo}} alt="image" class="result_img"/></a>
-              </div>
-              <h4>{{recipe.name}}</h4>
-              <a href="{{recipe.recipe_link}}" target="_blank">{{recipe.publisher}}</a>
-              <p class="ingredient_show" id="ingredient_{{recipe.api_id}}">Show Ingredients</p>
-              <div class="ingredients" id="ingredients_all_{{recipe.api_id}}">
-                {% for ingredient in ingredients %}
-                  {% if ingredient in recipe.ingredients.all %}
-                    <p>{{ingredient.ingredient}}</p>
-                  {% endif %}
-                {% endfor %}
-              </div>
-            </div>
+      {% for category,recipes in recipes %}
+        <div id="{{category}}" class="category">
+          <div class="divider" id="divider{{category}}">
           </div>
-        {% endif %}
+          <h2>{{category}}<h2>
+            {% for recipe in recipes %}
+                <div class="result">
+                  <div class="content">
+                  <img src='../static/images/heart.png' alt="image" class="fave_img" id="fave_img_{{recipe.api_id}}"/>
+                  <p class="to_fave" id="{{recipe.api_id}}" hidden="true">Favorite This</p>
+                  <div class="image">
+                    <a href="{% url 'menu:recipe' recipe.id %}" target="_blank"><img src={{recipe.photo}} alt="image" class="result_img" onerror="this.onerror=null;this.src='../static/images/default.jpg';"/></a>
+                  </div>
+                  <h4>{{recipe.name}}</h4>
+                  <a href="{{recipe.recipe_link}}" target="_blank">{{recipe.publisher}}</a>
+                  <p class="ingredient_show" id="ingredient_{{recipe.api_id}}">Show Ingredients</p>
+                  <div class="ingredients" id="ingredients_all_{{recipe.api_id}}">
+                    {% for ingredient in ingredients %}
+                      {% if ingredient in recipe.ingredients.all %}
+                        <p>{{ingredient.ingredient}}</p>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+        </div>
       {% endfor %}
     </div>
     <form action="{% url 'menu:favorite' %}" method="post" id="fave_form">

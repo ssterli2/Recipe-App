@@ -1,4 +1,3 @@
-'use strict';
 
 $(document).ready(function(){
 
@@ -55,6 +54,19 @@ $(document).ready(function(){
     } else {
       $('#ingredients_all_' + recipe_id).hide();
       $('#ingredient_' + recipe_id).text('Show Ingredients');
+    }
+  });
+
+  $('#filter').change(function() {
+    var cat = $(this).val();
+    if (cat == 'all') {
+      $('.category').show();
+      $('.divider').show();
+    }
+    else {
+      $('#' + cat).siblings().hide();
+      $('.divider').hide();
+      $('#' + cat).show();
     }
   });
 });

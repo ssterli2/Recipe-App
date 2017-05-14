@@ -16,9 +16,9 @@
   <body>
     <div class="navbar">
       <ul>
-        <li><a href="{% url 'menu:index' %}">Home</a></li>
-        <li><a href="{% url 'menu:profile' user %}">Profile</a></li>
-        <li><a href="{% url 'login:logout' %}">Logout</a></li>
+        <div class="navbar_option"><li><a href="{% url 'menu:index' %}">Home</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'menu:profile' user %}">Profile</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'login:logout' %}">Logout</a></li></div>
       </ul>
     </div>
     <form action="{% url 'menu:to_search' 1 %}" method="post" class="form-wrapper">
@@ -28,8 +28,9 @@
       <span class="arrow">
         <input type="submit" value="Search Recipes" class="button">
       </span>
-      <p>Powered By<a href="http://food2fork.com/" target="_blank">Food2Fork.com</a></p>
     </form>
+    <p class="powered_by" id="pb_search">Powered By<a href="http://food2fork.com/" target="_blank">Food2Fork.com</a></p>
+    {% autoescape off %}
     {% for result in results.recipes %}
       <div class="result">
         <div class="content">
@@ -41,13 +42,14 @@
             <p class="to_fave" id="{{result.recipe_id}}">Favorite This</p>
           {% endif %}
           <div class="image">
-            <img src={{result.image_url}} alt="image" class="result_img"/>
+            <img src={{result.image_url}} alt="image" class="result_img" onerror="this.onerror=null;this.src='../static/images/default.jpg';" />
           </div>
           <h4>{{result.title}}</h4>
           <a href="{{result.source_url}}" target="_blank">{{result.publisher}}</a>
         </div>
       </div>
     {% endfor %}
+    {% endautoescape %}
     <div class="page_buttons">
     {% if previous >= 1 %}
       <form action="{% url 'menu:to_search' previous %}" method="post">

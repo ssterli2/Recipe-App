@@ -10,23 +10,39 @@
   <body>
     <div class="navbar">
       <ul>
-        <li><a href="{% url 'menu:index' %}">Home</a></li>
-        <li><a href="{% url 'menu:profile' user %}">Profile</a></li>
-        <li><a href="{% url 'menu:search' %}">Search</a></li>
-        <li><a href="{% url 'login:logout' %}">Logout</a></li>
+        <div class="navbar_option"><li><a href="{% url 'menu:index' %}">Home</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'menu:profile' user %}">Profile</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'menu:search' %}">Search</a></li></div>
+        <div class="navbar_option"><li><a href="{% url 'login:logout' %}">Logout</a></li></div>
       </ul>
     </div>
     <div id="recipe">
       <div class="image">
-        <a href="{% url 'menu:recipe' recipe.id %}" target="_blank"><img src={{recipe.photo}} alt="image" class="recipe_img"/></a>
+        <a href="{% url 'menu:recipe' recipe.id %}" target="_blank"><img src={{recipe.photo}} alt="image" class="recipe_img" onerror="this.onerror=null;this.src='../static/images/default.jpg';"/></a>
       </div>
       <div class="recipe_info">
         <h2>{{recipe.name}}</h2>
         <h3><a href="{{recipe.recipe_link}}" target="_blank">{{recipe.publisher}}</a></h3>
-        <div class="ingredients" id="ingredients_{{recipe.api_id}}">
+        <div class="ingredients_recipe" id="ingredients_{{recipe.api_id}}">
           {% for ingredient in recipe.ingredients.all %}
             <p>{{ingredient.ingredient}}</p>
           {% endfor %}
+        </div>
+        <div id="add_cat">
+          <h3>Add a Category</h3>
+          <form action="{% url 'menu:categorize' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="recipeid" value="{{recipe.id}}">
+            Existing Categories: <select name="existing_category">
+              {% for category in categories %}
+                {% if category != "" %}
+                  <option value="{{category}}">{{category}}</option>
+                {% endif %}
+              {% endfor %}
+            </select> <br>
+            Create New Category: <input type="text" name="new_category">
+            <input type="submit" value="Categorize Recipe" id="add_cat_button">
+          </form>
       </div>
     </div>
   </body>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 import requests
 from django.views.decorators.http import require_http_methods
-from .models import Recipe, Ingredient
+from .models import Recipe, Ingredient, UserRecipe
 from ..login_reg_app.models import User
 
 # Create your views here.
@@ -55,11 +55,21 @@ def unfavorite(request):
     Recipe.objects.unfavorite(request.POST, user)
     return redirect('menu:search')
 
+@require_http_methods(['POST'])
+def categorize(request):
+    user = User.objects.get(id=request.session['user'])
+    UserRecipe.objects.addcategory(request.POST, user)
+    return redirect('menu:profile', id=user.id)
+
 def profile(request, id):
     if 'user' in request.session and request.session['user'] == int(id):
+        user = User.objects.get(id=request.session['user'])
+        recipe_map = {}
+        for recipe in user.recipes.all():
+            recipe_map.setdefault(recipe.user_recipe.get().category, []).append(recipe)
         context = {
-            "user" : User.objects.get(id=request.session['user']),
-            "recipes" : Recipe.objects.all(),
+            "user" : user,
+            "recipes" : sorted(recipe_map.items()),
             "ingredients": Ingredient.objects.all()
             }
         return render(request, "menu_planning_app/profile.html", context)
@@ -79,8 +89,9 @@ def update_profile(request, id):
 def recipe(request, id):
     context = {}
     if 'user' in request.session:
-        context["recipe"] = Recipe.objects.get(id=id),
+        context["recipe"] = Recipe.objects.get(id=id)
         context["user"] = request.session['user']
+        context["categories"] = UserRecipe.objects.values_list("category", flat=True).filter(user = request.session['user'], category__isnull=False).distinct().all()
         return render(request, "menu_planning_app/recipe.html", context)
     else:
         return redirect('login:signin')

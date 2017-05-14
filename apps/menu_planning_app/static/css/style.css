@@ -11,6 +11,7 @@ body {
   padding: 0;
   margin: 0;
 }
+
 #main {
   margin: 2%;
   height: 600px;
@@ -24,68 +25,80 @@ body {
   background-repeat: no-repeat;
 }
 
+.navbar {
+  height: 7%;
+}
+
 .navbar ul {
- margin: 0;
- padding: 5px;
- height: 35px;
- list-style-type: none;
- text-align: center;
- font-size: 1.25em;
- font-family: 'Slabo 27px', serif;
- background-color: #495453;
- }
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  text-align: center;
+  font-size: 2vw;
+  font-family: 'Slabo 27px', serif;
+  background-color: #495453;
+  overflow: hidden;
+}
 
-.navbar ul li {
- display: inline;
- height: 100%;
- padding-top: 0;
- padding-bottom: 0;
- vertical-align: middle;
- }
+.navbar_option {
+  height: 100%;
+  width: 10%;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #495453;
+}
 
-.navbar ul li a {
- text-decoration: none;
- padding: .2em 1em;
- color: white;
- background-color: #495453;
- }
+.navbar_option li a {
+  color: white;
+  text-decoration: none;
+}
 
-.navbar ul li a:hover {
- color: #495453;
- background-color: #D0F2E7;
- }
+.navbar_option li {
+  margin-top: 5%;
+}
 
- .form-wrapper {
- width:100%;
- height: 40px;
- margin-top: 3%;
- margin-bottom: 2%;
- padding:auto;
- text-align: center;
- }
+.navbar_option:hover {
+  color: #495453;
+  background-color: #D0F2E7;
+}
 
- .search {
+.form-wrapper {
+  width:100%;
+  height: 40px;
+  margin-top: 3%;
+  margin-bottom: 0.75%;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
+
+ .search, .search:active, .search:focus {
  height: 100%;
  width: 18%;
- padding-left: 1%;
- margin-top: 1%;
+ padding-left: 5px;
  font-family: 'Slabo 27px', serif;
- font-size: 1em;
+ font-size: 1.9vw;
  color: #495453;
  background:#D9DBDB;
  border:0px solid #dbdbdb;
  border-radius: 5px;
+ outline: none;
  }
 
  .button {
- height: 100%;
- position:relative;
- padding:6px 15px;
- left:-8px;
- border:2px solid #ADE0DB;
- background-color:#ADE0DB;
- color:#495453;
- border-radius: 0 5px 5px 0;
+   height: 100%;
+   position:relative;
+   padding:6px 15px;
+   left:-8px;
+   border:2px solid #ADE0DB;
+   background-color:#ADE0DB;
+   color:#495453;
+   border-radius: 0 5px 5px 0;
+   vertical-align: top;
+ }
+
+ .button:focus {
+   outline: none;
  }
 
  .button:hover  {
@@ -96,17 +109,37 @@ body {
 #index_button {
   background: #EBF2F2;
   border: 2px solid #EBF2F2;
-  margin-top: -10%;
 }
 
-#main p {
+#index_button:hover  {
+background-color: #495453;
+color: #ADE0DB;
+}
+
+.powered_by {
   color: #EBF2F2;
+  font-size: 1vw;
+  height: 70px;
+  text-align: center;
+}
+
+.powered_by a {
+  color: #D0F2E7;
+  padding-left: 3px;
+}
+
+#pb_search {
+  color: #495453;
+}
+
+#pb_search a {
+  color: #ADE0DB;
 }
 
 .result {
-    float:left;
+    display: inline-block;
     position: relative;
-    width: 30%;
+    width: 29%;
     padding-bottom : 30%;
     margin:1.66%;
     background-color:#EBF2F2;
@@ -117,9 +150,19 @@ body {
     position:absolute;
     height:90%;
     width:90%;
+    text-align: center;
     padding: 5%;
-    color: #495453;
-    font-size: 1.25em;
+    color: #016367;
+    font-size: 1.6vw;
+}
+
+.content h4 {
+  font-size: 1.8vw;
+  text-transform: capitalize;
+}
+
+.content a {
+  color: #47b399;
 }
 
 .fave_img {
@@ -140,11 +183,12 @@ body {
   top: 2%;
   left: 2%;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.6)
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
 }
 
 .image {
-  height: 75%;
+  height: 73%;
   text-align: center;
   overflow: hidden;
   margin-bottom: 2%;
@@ -157,15 +201,26 @@ body {
   vertical-align: middle;
 }
 
+.ingredients * {
+  font-size: 1vw;
+  color: #495453;
+  padding: 3px;
+}
+
+.ingredient_show {
+  font-size: 1.3vw;
+  color: #495453;
+}
+
 #main_content {
   background-color: rgba(255, 255, 255, 0.6);
   width: 50%;
-  height: 30%;
+  height: 40%;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 5%;
   text-align: center;
-  padding-top: 5%;
-  font-size: 1.5em;
+  padding-top: 3%;
+  font-size: 2.2vw;
 }
 
 #website_name {
@@ -175,6 +230,9 @@ body {
 .login, .update {
     margin-left: 5%;
     padding-left: 1%;
+    padding-top: 1%;
+    margin-bottom: 1%;
+    margin-top: 1%;
     border: 3px solid #f1f1f1;
     width: 30%;
 }
@@ -183,7 +241,7 @@ body {
 .login input[type=text], .login input[type=password], .update input[type=text], .update input[type=password]{
     width: 93%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 20px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -214,6 +272,7 @@ body {
 .login_h, .update_h {
   padding-left: 2%;
 }
+
 a {
     color: #495453;
 }
@@ -244,12 +303,65 @@ a:visited {
 }
 
 .recipe_info {
-  width: 80%;
-  margin: 3% 0 4% 30%
+  width: 100%;
+  text-align: center;
 }
 
-.recipe_info h3, .recipe_info div{
-  margin-left: 4%;
+.recipe_info h2 {
+  color: #016367;
+  font-size: 2vw;
+}
+
+.recipe_info a {
+  color: #47b399;
+  font-size: 1.7vw;
+}
+
+.recipe_info h3 {
+  margin: 10px;
+  margin-top: 0px;
+}
+
+.ingredients_recipe {
+  font-size: 1.5vw;
+  color: #495453;
+  padding: 3px;
+}
+
+#add_cat {
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+  font-size: 1.5vw;
+  background-color: #016367;
+  color: white;
+  opacity: .6;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+#add_cat input, #add_cat select, #add_cat:active {
+  font-size: 1.0vw;
+  outline: none;
+}
+
+#add_cat_button {
+height: 30px;
+margin-top: 10px;
+padding: 5px;
+border:2px solid #ADE0DB;
+background-color:#ADE0DB;
+color:#495453;
+border-radius: 5px;
+}
+
+#add_cat_button:focus, #previous_button:focus, #next_button:focus {
+  outline: none;
+}
+
+#add_cat_button:hover  {
+background-color:#495453;
+color:#ADE0DB;
 }
 
 .page_buttons {
@@ -282,4 +394,51 @@ a:visited {
 #next_button:hover, #previous_button:hover {
   background-color:#495453;
   color:#ADE0DB;
+}
+
+.category {
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  text-align: center;
+}
+
+.divider {
+  width: 60%;
+  margin: auto;
+  background-color: #AF274E;
+  height: 10px;
+  border-radius: 10px;
+}
+
+.category h2 {
+  font-size: 3vw;
+  text-align: center;
+  text-transform: capitalize;
+  color: #495453;
+}
+
+#divider {
+  height: 0px;
+}
+
+#filter_sec{
+  width: 100%;
+  text-align: right;
+}
+
+#filter_contents {
+  margin-right: 5%;
+  color: #495453;
+  font-size: 1.5vw;
+}
+
+select {
+  color: #495453;
+  font-size: 1.2vw;
+  text-transform: capitalize;
+}
+
+select:active, select, select:hover {
+  outline-color: #AF274E
 }
